@@ -23,6 +23,7 @@ enum class Color : int {
     Blue,
 };
 
+
 ColorEnum convert_by_pun(Color c) {
     // READ: <https://zh.cppreference.com/w/cpp/language/union>
     // `union` 表示在同一内存位置存储的不同类型的值。
@@ -37,7 +38,7 @@ ColorEnum convert_by_pun(Color c) {
 
     TypePun pun;
     // TODO: 补全类型双关转换
-
+    pun.c = c;
     return pun.e;
 }
 
