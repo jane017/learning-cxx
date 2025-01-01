@@ -1,4 +1,5 @@
 #include "../exercise.h"
+#include "cstring"
 
 // READ: 复制构造函数 <https://zh.cppreference.com/w/cpp/language/copy_constructor>
 // READ: 函数定义（显式弃置）<https://zh.cppreference.com/w/cpp/language/function>
@@ -7,21 +8,30 @@
 class DynFibonacci {
     size_t *cache;
     int cached;
-    int cap;
+    //int cap;
 
 public:
     // TODO: 实现动态设置容量的构造器
-    DynFibonacci(int capacity): cache(new size_t[capacity]{0,1}), cached(2), cap(capacity) {}
+    //DynFibonacci(int capacity): cache(new size_t[capacity]{0,1}), cached(2), cap(capacity) {}
+
+    DynFibonacci(int capacity): cache(new size_t[capacity]{0,1}), cached(2) {}
 
     // TODO: 实现复制构造器
-    DynFibonacci(DynFibonacci const & c){
-        this->cached = c.cached;
-        this->cap = c.cap;
-        for (int i = 0; i < cap; i++)
-        {
-            this->cache[i] = c.cache[i];
-        }
+    // DynFibonacci(DynFibonacci const & c){
+    //     this->cached = c.cached;
+    //     this->cap = c.cap;
+    //     for (int i = 0; i < cap; i++)
+    //     {
+    //         this->cache[i] = c.cache[i];
+    //     }
         
+    // }
+
+    DynFibonacci(DynFibonacci const & others)
+    : cache(new size_t[others.cached]), 
+      cached(others.cached){
+      memcpy(cache, others.cache,cached*sizeof(size_t));
+
     }
 
     // TODO: 实现析构器，释放缓存空间
